@@ -286,7 +286,7 @@ export default function MultiUserAuth() {
             <div className="flex items-center flex-col gap-y-4">
               <div className="flex gap-x-1">
                 <h3 className="text-md md:text-2xl font-bold text-white text-center white-space-nowrap hidden md:block">
-                  {t("login.multi-user.welcome")}
+                  Bienvenido a
                 </h3>
                 <p className="text-4xl md:text-2xl font-bold bg-gradient-to-r from-[#75D6FF] via-[#FFFFFF] light:via-[#75D6FF] to-[#FFFFFF] light:to-[#75D6FF] bg-clip-text text-transparent">
                   {customAppName || "AnythingLLM"}
