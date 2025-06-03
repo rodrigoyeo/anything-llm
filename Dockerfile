@@ -10,22 +10,13 @@ ENV OPEN_MODEL_PREF=gpt-4o
 ENV VECTOR_DB=pgvector
 ENV INSTANCE_NAME=MATI
 
-# Copy our customized files
+# Copy our customized files directly to the server's public directory
 COPY ./frontend/public/Favicon_arkode.png /app/server/public/favicon.png
 COPY ./frontend/public/Logo_Arkode_LLM.png /app/server/public/logo.png
 
-# Copy our modified frontend components
-COPY ./frontend/src/components/Modals/Password/index.jsx /app/frontend/src/components/Modals/Password/index.jsx
-COPY ./frontend/src/components/Modals/Password/MultiUserAuth.jsx /app/frontend/src/components/Modals/Password/MultiUserAuth.jsx
-COPY ./frontend/index.html /app/frontend/index.html
-
-# Rebuild the frontend with our changes
-USER anythingllm
-WORKDIR /app/frontend
-RUN yarn build && cp -r dist/* /app/server/public/
-
-# Reset to the default working directory and user
-WORKDIR /app
-USER anythingllm
+# Copy the modified index.html file
+COPY ./frontend/index.html /app/server/public/index.html
 
 # Use the default entrypoint from the base image
+WORKDIR /app
+USER anythingllm
