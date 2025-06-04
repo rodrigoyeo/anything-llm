@@ -16,7 +16,3 @@ COPY ./frontend/public/Logo_Arkode_LLM.png /app/server/public/logo.png
 
 # Copy the modified index.html file
 COPY ./frontend/index.html /app/server/public/index.html
-
-# Use the default entrypoint from the base image
-WORKDIR /app
-USER anythingllm
