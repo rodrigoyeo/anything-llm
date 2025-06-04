@@ -7,7 +7,7 @@
     "node": "18.x"
   },
   "scripts": {
-    "setup": "npm install --prefix server --legacy-peer-deps && npm install --prefix frontend --legacy-peer-deps",
+    "setup": "npm install --prefix server --legacy-peer-deps && npm install --prefix frontend --legacy-peer-deps && npm install --prefix collector --legacy-peer-deps",
     "build": "npm run setup && cd frontend && npm run build",
     "start": "cd server && node index.js"
   },
