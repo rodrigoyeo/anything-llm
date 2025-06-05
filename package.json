@@ -12,7 +12,7 @@
     "build": "cd frontend && npm run build && cd ../server && npx prisma generate",
     "postbuild": "mkdir -p server/public && cp -r frontend/dist/* server/public/",
     "migrate": "cd server && npx prisma migrate deploy",
-    "start": "cd server && npm run migrate && NODE_ENV=production node index.js"
+    "start": "cd server && npx prisma generate && npx prisma migrate deploy && node index.js"
   },
   "keywords": [
     "anythingllm",
