@@ -8,11 +8,9 @@
   },
   "scripts": {
     "setup": "npm install --prefix server --legacy-peer-deps && npm install --prefix frontend --legacy-peer-deps && npm install --prefix collector --legacy-peer-deps",
-    "prebuild": "npm run setup",
-    "build": "cd frontend && npm run build && cd ../server && npx prisma generate",
-    "postbuild": "mkdir -p server/public && cp -r frontend/dist/* server/public/",
+    "build": "cd frontend && npm run build && mkdir -p ../server/public && cp -r dist/* ../server/public/ && cd ../server && npx prisma generate",
     "migrate": "cd server && npx prisma migrate deploy",
-    "start": "cd server && npx prisma generate && npx prisma migrate deploy && node index.js"
+    "start": "cd server && npx prisma generate && npx prisma migrate deploy && NODE_ENV=production node index.js"
   },
   "keywords": [
     "anythingllm",
