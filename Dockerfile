@@ -6,9 +6,9 @@ WORKDIR /app
 # Copy everything from the current directory into the container
 COPY . .
 
-# Install all dependencies for the monorepo
-# This will run npm install for root, server, frontend, and collector
-RUN npm install
+# Install all dependencies for the monorepo using the setup script
+# This will install dependencies for root, server, frontend, and collector
+RUN npm run setup
 
 # Run the build script defined in package.json
 # This includes frontend build and Prisma client generation
