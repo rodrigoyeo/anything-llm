@@ -1,0 +1,57 @@
+[build]
+builder = "DOCKERFILE"
+dockerfile = "Dockerfile"
+
+[deploy]
+healthcheckPath = "/api/health"
+healthcheckTimeout = 300
+restartPolicyType = "ON_FAILURE"
+restartPolicyMaxRetries = 3
+
+[deploy.envs]
+# ===========================================
+# 🗄️ DATABASE CONFIGURATION
+# Set these in Railway dashboard for your Postgres service
+# ===========================================
+DATABASE_URL="${{Postgres.DATABASE_URL}}"
+PGVECTOR_CONNECTION_STRING="${{Postgres.DATABASE_URL}}"
+DB_TYPE="postgresql"
+DISABLE_SQLITE="true"
+
+# ===========================================
+# 🔍 VECTOR DATABASE SETTINGS  
+# ===========================================
+VECTOR_DB="pgvector"
+PGVECTOR_TABLE_NAME="mati_vectors"
+
+# ===========================================
+# 🤖 LLM PROVIDER CONFIGURATION
+# ⚠️ Set your OPEN_AI_KEY in Railway dashboard variables!
+# ===========================================
+LLM_PROVIDER="openai"
+OPEN_MODEL_PREF="gpt-4o"
+
+# ===========================================
+# 🔐 SECURITY & AUTHENTICATION
+# ⚠️ Set JWT_SECRET, SIG_KEY, SIG_SALT in Railway dashboard variables!
+# ===========================================
+# JWT_SECRET="your_jwt_secret_here"
+# SIG_KEY="your_sig_key_here"
+# SIG_SALT="your_sig_salt_here"
+
+# ===========================================
+# 🏗️ APPLICATION CONFIGURATION
+# ===========================================
+NODE_ENV="production"
+SERVER_PORT="3001"
+STORAGE_DIR="/app/server/storage"
+INSTANCE_NAME="MATI"
+
+[[services]]
+name = "web"
+port = 3001
+internal_port = 3001
+
+[logging]
+level = "info"
+format = "json"
